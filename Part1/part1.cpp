@@ -49,7 +49,7 @@ int main()
    	 	}
    	 	cout<<endl;
    	 }
-   	 cout<<"size = "<<level[k].size()<<endl;
+   	 cout<<"size = "<<level[1].size()<<endl;
      return 0;
 
 

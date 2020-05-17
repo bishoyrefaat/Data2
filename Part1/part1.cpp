@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace  std;
-vector< vector<int> > v(1000),level(1000);
-bool vis[1000];
+vector< vector<int> > v,level;
+vector<bool> vis;
 void bfs(int source,int k)
  { 
    queue< pair< int,int > > q;
@@ -33,6 +33,9 @@ int main()
    	 cout<<"please enter number of edges:"<<endl;
    	 cin>>e;
      cout<<"please enter edges in the form (u  v):"<<endl;
+   	 v.reserve(n+1);
+   	 vis.reserve(n+1);
+   	 level.reserve(e+1);
    	 for(int i =0;i<e;i++)
    	 {
    	 	cin>>u>>to;

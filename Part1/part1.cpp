@@ -28,16 +28,18 @@ int main()
 {
    	  int u ,to ;
    	 int n,e,k,source;
-   	 cin>>n>>e;
-   	// v.resize(n,vector<int>(0));
- 	 //level.resize(e,vector<int>(0));
- 	 memset(vis,false,sizeof(vis));
+   	 cout<<"please enter number of vertices:"<<endl;
+   	 cin>>n;
+   	 cout<<"please enter number of edges:"<<endl;
+   	 cin>>e;
+     cout<<"please enter edges in the form (u  v):"<<endl;
    	 for(int i =0;i<e;i++)
    	 {
    	 	cin>>u>>to;
 	    v[u].push_back(to);
 		v[to].push_back(u);
    	 }
+   	 cout<<"please enter starting vertex:"<<endl;
    	 cin>>source>>k;
    	 bfs(source,k);
    	 for(int i =k;i>0;i--)

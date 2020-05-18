@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace  std;
-vector< vector<int> > v(1000),level(1000);
-bool vis[1000];
+vector< vector<int> > v,level;
+vector<bool> vis;
 void bfs(int source,int k)
  { 
    queue< pair< int,int > > q;
@@ -28,16 +28,21 @@ int main()
 {
    	  int u ,to ;
    	 int n,e,k,source;
-   	 cin>>n>>e;
-   	// v.resize(n,vector<int>(0));
- 	 //level.resize(e,vector<int>(0));
- 	 memset(vis,false,sizeof(vis));
+   	 cout<<"please enter number of vertices:"<<endl;
+   	 cin>>n;
+   	 cout<<"please enter number of edges:"<<endl;
+   	 cin>>e;
+     cout<<"please enter edges in the form (u  v):"<<endl;
+   	 v.reserve(n+1);
+   	 vis.reserve(n+1);
+   	 level.reserve(e+1);
    	 for(int i =0;i<e;i++)
    	 {
    	 	cin>>u>>to;
 	    v[u].push_back(to);
 		v[to].push_back(u);
    	 }
+   	 cout<<"please enter starting vertex:"<<endl;
    	 cin>>source>>k;
    	 bfs(source,k);
    	 for(int i =k;i>0;i--)

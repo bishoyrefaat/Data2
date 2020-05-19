@@ -43,7 +43,7 @@ int main()
 		v[to].push_back(u);
    	 }
    	 cout<<"please enter starting vertex:"<<endl;
-   	 cin>>source>>k;
+   	 cin>>source>>k;	
    	 bfs(source,k);
    	 for(int i =k;i>0;i--)
    	 {

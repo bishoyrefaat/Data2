@@ -53,20 +53,21 @@ public class part1 extends AbstractPart{
         vis[source]=true ;
         while(!q1.isEmpty())
         {
-            int curfir= q1.poll(),cursec=q2.poll();
-            Iterator<Integer> iter = list[curfir].iterator();
+            int current= q1.poll(),curLevel=q2.poll();
+            Iterator<Integer> iter = list[current].iterator();
             while(iter.hasNext()) {
                 int nxt=(int)iter.next();
                 if(!vis[nxt]){
-                level[cursec].add(nxt);
+                level[curLevel].add(nxt);
                 vis[nxt]=true;
-                if(cursec-1>0)
+                if(curLevel-1>0)
                     q1.add(nxt);
-                    q2.add(cursec-1);
+                    q2.add(curLevel-1);
             }
             }
         }
     }
 
 }
-// test ex   9 10 1 2 2 3 1 7 2 4 4 7 7 8 3 4 7 6 5 6 9 7  4   2
+// test ex   9 10   1 2 2 3 1 7 2 4 4 7 7 8 3 4 7 6 5 6 9 7     4   2
+// test ex  10 10    1 2 2 3 2 4 4 7 7 5 5 6 4 8 8 9 9 10 3 8     3   3

@@ -2,7 +2,7 @@ import java.util.*;
 
 public class part3 extends AbstractPart{
 
-    public class Route {
+    static class Route {
          int point, weight;
         public Route(int point, int weight) {
             this.point = point;
@@ -11,14 +11,11 @@ public class part3 extends AbstractPart{
 
     class RouteComparator implements Comparator<Route>{
         public int compare(Route s1, Route s2) {
-            if (s1.weight < s2.weight)
-                return 1;
-            else if (s1.weight > s2.weight)
-                return -1;
+            if (s1.weight < s2.weight) return 1;
+            else if (s1.weight > s2.weight) return -1;
             return 0;
         }
     }
-
 
     int M;
     ArrayList<ArrayList<Route>> graph;
@@ -35,11 +32,11 @@ public class part3 extends AbstractPart{
         System.out.println("please enter source , destination time and cost for each route: ");
         graph=new ArrayList<ArrayList<Route>> (nr+1);
         g=new int[nc+1][nc+1];
-        for (int i = 0; i < nc+2; i++){graph.add(new ArrayList<Route>(nc+1));}
+        for (int i = 0; i < nc+1; i++){graph.add(new ArrayList<Route>(nc+1));}
         int src , dest ,time,cst,total;
         for (int i = 0; i < nr; i++){
             src=s.nextInt();dest=s.nextInt();time=s.nextInt();cst=s.nextInt();
-            total=M*(1+time)+cst;
+            total=M*(1+time)+cst; //get total cost by adding the hour cost (with the 1 hour stay included)
             graph.get(src).add(new Route(dest,total));
             g[src][dest]=time;
         }
@@ -55,7 +52,7 @@ public class part3 extends AbstractPart{
     private void dijkstra(int start,int end,int nc,int nr) {
             int d[] = new int[nc+1];
             int shortest[]= new int[nc+1];
-            for (int i = 0; i < nc+1; i++) {d[i] = Integer.MAX_VALUE; }
+            for (int i = 0; i < nc+1; i++) {d[i] = Integer.MAX_VALUE; }//initial values for all points
             d[start]=0;
             PriorityQueue<Route> q = new PriorityQueue<Route>(nr+1,new RouteComparator());
             q.add(new Route(start,0));

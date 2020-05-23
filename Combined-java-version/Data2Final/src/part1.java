@@ -6,6 +6,13 @@ public class part1 extends AbstractPart{
     private LinkedList<Integer> level[];
     private boolean[] vis;
 
+    static class pair {
+        int x, level;
+        public pair(int x, int level) {
+            this.x = x;this.level= level; }
+    }
+
+
     public void start() {
         Scanner s = new Scanner(System.in);
         int u,v,n,e,k,source;
@@ -26,13 +33,14 @@ public class part1 extends AbstractPart{
             v=s.nextInt();
             list[v].add(u);
             list[u].add(v);
+            //undirected graph so we add both ways
         }
         System.out.println("please enter starting vertex:");
         source=s.nextInt(); //source is starting vertex
         System.out.println("please enter value k :");
         k=s.nextInt();
         bfs(source,k);
-        for(int i =k;i>0;i--) {
+        for(int i =k;i>0;i--) { //print every level until the required one
             System.out.println("level "+(k-i+1)+":\t");
             for(int j=0;j<level[i].size();j++)
             {
@@ -46,14 +54,12 @@ public class part1 extends AbstractPart{
 
     void bfs(int source,int k)
     {
-        Queue<Integer>  q1  =new LinkedList<>();
-        Queue<Integer>  q2  =new LinkedList<>();
-        q1.add(source);
-        q2.add(k);
+        Queue<pair>  q1  =new LinkedList<>();
+        q1.add(new pair(source,k));
         vis[source]=true ;
         while(!q1.isEmpty())
         {
-            int current= q1.poll(),curLevel=q2.poll();
+            int current= q1.peek().x,curLevel=q1.peek().level;q1.remove();
             Iterator<Integer> iter = list[current].iterator();
             while(iter.hasNext()) {
                 int nxt=(int)iter.next();
@@ -61,8 +67,7 @@ public class part1 extends AbstractPart{
                 level[curLevel].add(nxt);
                 vis[nxt]=true;
                 if(curLevel-1>0)
-                    q1.add(nxt);
-                    q2.add(curLevel-1);
+                    q1.add(new pair(nxt,curLevel-1));
             }
             }
         }

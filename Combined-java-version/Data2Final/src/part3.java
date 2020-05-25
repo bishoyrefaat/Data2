@@ -50,32 +50,39 @@ public class part3 extends AbstractPart{
     }
 
     private void dijkstra(int start,int end,int nc,int nr) {
-            int d[] = new int[nc+1];
+            int d[] = new int[nc+1];// this array is to contain the shortest distance for each point from to the start
             int shortest[]= new int[nc+1];
-            for (int i = 0; i < nc+1; i++) {d[i] = Integer.MAX_VALUE; }//initial values for all points
-            d[start]=0;
+            /* this will contain the previous point for each shortest path.
+            for example in the case provided with the assigment  d[4]=3 , and d[3]=1
+            this is used to trace the path taken  */
+            for (int i = 0; i < nc+1; i++) {d[i] = -1; }//initial values for all points
+            d[start]=0;//start is intialized with 0
             PriorityQueue<Route> q = new PriorityQueue<Route>(nr+1,new RouteComparator());
             q.add(new Route(start,0));
             while(!q.isEmpty()&&end!=start){
                 int cur=q.poll().point;
-                Iterator<Route> iter = graph.get(cur).iterator();
+                Iterator<Route> iter = graph.get(cur).iterator(); //iterate from each point to its available routes
                 while(iter.hasNext()){
                     Route n=iter.next();
                     int nxt=n.point;
                     int weight=n.weight;
-                    if(d[nxt]>d[cur]+weight){
+                    //check if a route through the current point creates a shorter path, and update d[]
+                    if(d[nxt]>d[cur]+weight||d[nxt]==-1){
                         d[nxt]=d[cur]+weight;
-                        q.add(new Route(nxt,d[nxt]));
+                        q.add(new Route(nxt,d[nxt]));//enqueue the point after the update
                         shortest[nxt]=cur;
                     }
                 }
             }
+            if(d[end]!=-1) {
 
-        System.out.print("The route with minimum cost is ");
-        int hours=printPathRec(shortest,end,start);
-        System.out.println();
-        System.out.print("Total time "+(hours-1)+" hours \nTotal cost = "+Math.max(0,(d[end]-1*M))+"$");
-        // minus 1*M because no stoping for 1 hour in last point
+                System.out.print("The route with minimum cost is ");
+                int hours = printPathRec(shortest, end, start);
+                System.out.println();
+                System.out.print("Total time " + (hours - 1) + " hours \nTotal cost = " + Math.max(0, (d[end] - 1 * M)) + "$");
+                // minus 1*M because no stoping for 1 hour in last point
+            }else
+                System.out.println("no path available");
     }
 
 

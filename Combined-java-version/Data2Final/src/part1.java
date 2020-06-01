@@ -24,7 +24,7 @@ public class part1 extends AbstractPart{
         vis = new boolean[n+1]; //array to record visited points
         list=new LinkedList[n+1];
         level= new LinkedList[n+1];
-        for (int i = 0; i < n+1; ++i){ list[i] = new LinkedList();level[i] = new LinkedList();}
+        for (int i = 0; i < n+1; ++i){ list[i] = new LinkedList();}
 
         System.out.println("please enter edges in the form (u  v):");
         for(int i =0;i<e;i++)
@@ -39,23 +39,26 @@ public class part1 extends AbstractPart{
         source=s.nextInt(); //source is starting vertex
         System.out.println("please enter value k :");
         k=s.nextInt();
+        for (int i = 0; i < k+1; ++i)level[i] = new LinkedList();
+
         bfs(source,k);
-        for(int i =k;i>0;i--) { //print every level until the required one
-            System.out.println("level "+(k-i+1)+":\t");
+
+        //printing answer
+        for(int i=k-1;i>=0;i--) { //print every level until the required one
+            System.out.println("level "+(k-i)+":\t");
             for(int j=0;j<level[i].size();j++)
             {
                 System.out.print(" "+level[i].get(j));
             }
             System.out.println();
         }
-        System.out.println("size = "+level[1].size());
-
+        System.out.println("size of kth level = "+level[0].size());//note: the list is filled in reverse order level[0] is the kth level
     }
 
     void bfs(int source,int k)
     {
         Queue<pair>  q1  =new LinkedList<>();
-        q1.add(new pair(source,k));
+        q1.add(new pair(source,k-1));
         vis[source]=true ;
         while(!q1.isEmpty())
         {
@@ -66,7 +69,7 @@ public class part1 extends AbstractPart{
                 if(!vis[nxt]){
                 level[curLevel].add(nxt);
                 vis[nxt]=true;
-                if(curLevel-1>0)
+                if(curLevel-1>=0)
                     q1.add(new pair(nxt,curLevel-1));
             }
             }

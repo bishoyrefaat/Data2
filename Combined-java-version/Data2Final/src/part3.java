@@ -48,7 +48,7 @@ public class part3 extends AbstractPart{
     }
 
     private void dijkstra(int start,int end,int nc,int nr) {
-            int d[] = new int[nc+1];//array to contain the shortest distance for each point relative to the start
+            int d[] = new int[nc+1];//array to contain the least cost for each point relative to the start
             int t[]= new int[nc+1];//array to record the time for the shortest path for each point relative to the start
             int shortest[]= new int[nc+1];
             /* this will contain the previous point for each shortest path.
@@ -64,7 +64,7 @@ public class part3 extends AbstractPart{
                 while(iter.hasNext()){
                     Route n=iter.next();
                     int nxt=n.point,weight=n.weight,time=n.time;
-                    //check if a route through the current point creates a shorter path, and update d[]
+                    //check if a route through the current point creates a cheaper path, and update d[]
                     if(d[nxt]>d[cur]+weight||d[nxt]==-1){
                         d[nxt]=d[cur]+weight;
                         t[nxt]=time+t[cur]+1;//added 1 to time to account for the 1 hour wait in each city
@@ -85,10 +85,10 @@ public class part3 extends AbstractPart{
     }
 
 
-    public void printPathRec(int [] d,int b,int a) {
+    public void printPathRec(int [] shortest,int b,int a) {
         if(b==a){ System.out.print(b);
         } else {
-            printPathRec(d, d[b], a);
+            printPathRec(shortest, shortest[b], a);
             System.out.print(" "+b); }
     }
 

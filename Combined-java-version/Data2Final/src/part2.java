@@ -34,9 +34,9 @@ public class part2 extends AbstractPart{
     /*
     1-we use bfs to solve the maze we visit the cells in all 4 directions
     2-visited cells are marked with -1*(i+1) to trace the route while printing
-    2-go to the isSafe fn to check if they are available
-    3-we then enqueue them , and repeat
-    4-at the start of every loop check if we reached the end of the maze
+    3-go to the isSafe fn to check if they are available
+    4-we then enqueue them , and repeat
+    5-at the start of every loop check if we reached the end of the maze
      */
     public boolean solve() {
         if (!isSafe( N - 1, N - 1) || !isSafe( 0, 0))

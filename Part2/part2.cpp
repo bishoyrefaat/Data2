@@ -21,7 +21,7 @@ void bfs()
 { 
   if(v[1][1]==1)
 	return ;
-  queue <pair<int,int> >q;
+   queue <pair<int,int> >q;
 	q.push({1,1});
    while(!q.empty()&&v[n][n]==0)
    {
@@ -34,10 +34,7 @@ void bfs()
    		 v[ curr.first + dx[i] ][curr.second + dy[i] ]=-1*(i+1);
            q.push({curr.first+dx[i],curr.second+dy[i]});
    		}
-
    	}
-
-
    }
 }
 
@@ -59,6 +56,5 @@ int main()
  	cout<<endl;
  	if(v[n][n]==0)
  		cout<<"No path found ";
-else printroute();
-  	
+else printroute();	
 }

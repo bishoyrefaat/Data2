@@ -18,8 +18,8 @@ public class part3 extends AbstractPart{
             return 0; }
     }
 
-    int M;
-    ArrayList<ArrayList<Route>> graph;
+    private int M;
+    private ArrayList<ArrayList<Route>> graph;
     public void start() {
         Scanner s = new Scanner(System.in);
         System.out.println("please enter amount M:");
@@ -85,7 +85,7 @@ public class part3 extends AbstractPart{
     }
 
 
-    public void printPathRec(int [] shortest,int b,int a) {
+    private void printPathRec(int [] shortest,int b,int a) {
         if(b==a){ System.out.print(b);
         } else {
             printPathRec(shortest, shortest[b], a);
@@ -95,4 +95,4 @@ public class part3 extends AbstractPart{
 
     }
 //test ex   100  4  5    1 2 1 250   1 3 1 300   1 4 2 700   2 4 1 300   3 4 1 200   1  4
-//test ex   30   10  3 1 10 3 10000   1 2 2 40   2 10 3 50   1    10
+//test ex   30   10  3  1 10 3 10000   1 2 2 40   2 10 3 50   1    10

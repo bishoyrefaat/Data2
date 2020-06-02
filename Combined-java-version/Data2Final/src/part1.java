@@ -44,18 +44,18 @@ public class part1 extends AbstractPart{
         bfs(source,k);
 
         //printing answer
-        for(int i=k-1;i>=0;i--) { //print every level until the required one
+        /*for(int i=k-1;i>=0;i--) { //print every level until the required one
             System.out.println("level "+(k-i)+":\t");
             for(int j=0;j<level[i].size();j++)
             {
                 System.out.print(" "+level[i].get(j));
             }
             System.out.println();
-        }
-        System.out.println("size of kth level = "+level[0].size());//note: the list is filled in reverse order level[0] is the kth level
+        }*/
+        System.out.println("There are "+level[0].size()+" people with "+k+" connections away starting from "+source);//note: the list is filled in reverse order level[0] is the kth level
     }
 
-    void bfs(int source,int k)
+    private void bfs(int source,int k)
     {
         Queue<pair>  q1  =new LinkedList<>();
         q1.add(new pair(source,k-1));
@@ -77,5 +77,5 @@ public class part1 extends AbstractPart{
     }
 
 }
-// test ex   9 10   1 2 2 3 1 7 2 4 4 7 7 8 3 4 7 6 5 6 9 7     4   2
-// test ex  10 10    1 2 2 3 2 4 4 7 7 5 5 6 4 8 8 9 9 10 3 8     3   3
+// test ex   9 10   1 2   2 3   1 7   2 4   4 7   7 8   3 4   7 6   5 6   9 7     4   2
+// test ex  10 10    1 2    2 3    2 4    4 7    7 5    5 6    4 8    8 9    9 10    3 8     3   3

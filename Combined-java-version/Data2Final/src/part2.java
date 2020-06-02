@@ -2,9 +2,9 @@ import java.util.*;
 import java.lang.*;
 
 public class part2 extends AbstractPart{
-    static int[][] maze;
-    static int N;
-    int moves[] = {0,-1,0,1};//possible moves (0,-1)down,(0.1)up,(1,0)right,(-1,0)left
+    private static int[][] maze;
+    private static int N;
+    private int moves[] = {0,-1,0,1};//possible moves (0,-1)down,(0.1)up,(1,0)right,(-1,0)left
 
     static class cell {
         int x, y;
@@ -38,7 +38,7 @@ public class part2 extends AbstractPart{
     4-we then enqueue them , and repeat
     5-at the start of every loop check if we reached the end of the maze
      */
-    public boolean solve() {
+    private boolean solve() {
         if (!isSafe( N - 1, N - 1) || !isSafe( 0, 0))
             return false; //if end or start is blocked then no solution
 
@@ -52,10 +52,10 @@ public class part2 extends AbstractPart{
             for (int i = 0; i < 4; i++) {
                 int mx=c.x+moves[i]; int my=c.y+moves[3-i];
 
-                if (isSafe(mx, my) ) {
-                    maze[mx][my]=-1*(i+1);
+                if (isSafe(mx,my) ) {
+                    maze[my][mx]=-1*(i+1);
                     //leave trail to trace and print the steps later and mark visited
-                    // if we move up we put value -1 , left put -2 ,down put -3 ,right put -4
+                    // if we move down we put value -1 , left put -2 ,up put -3 ,right put -4
                     queue.add(new cell(mx, my));
                 }
             }
@@ -63,15 +63,15 @@ public class part2 extends AbstractPart{
     }
 
     // this fn confirms is the cell the runner will move to is a clear cell
-    public static boolean isSafe(int x, int y){return (x<N && x>=0 && y<N && y>=0&& maze[x][y]==0);}
+    private static boolean isSafe(int x, int y){return (x<N && x>=0 && y<N && y>=0&& maze[y][x]==0);}
 
 
     // an fn to print the steps taken to finish the maze
-    public void printPathRec(int x , int y) {
+    private void printPathRec(int x , int y) {
         if(x==0&&y==0) {
             System.out.print("(" + x + "," + y + ")");
         return ;}
-        int i = -1*(maze[x][y]+1);
+        int i = -1*(maze[y][x]+1);
             printPathRec(x-moves[i],y-moves[3-i]);
             System.out.print(",(" + x + "," + y + ")");
     }

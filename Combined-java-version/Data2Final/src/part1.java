@@ -31,9 +31,10 @@ public class part1 extends AbstractPart{
         {
             u=s.nextInt();
             v=s.nextInt();
+
+            //undirected graph so we add both ways
             list[v].add(u);
             list[u].add(v);
-            //undirected graph so we add both ways
         }
         System.out.println("please enter starting vertex:");
         source=s.nextInt(); //source is starting vertex

@@ -4,7 +4,9 @@ import java.lang.*;
 public class part2 extends AbstractPart{
     private static int[][] maze;
     private static int N;
-    private int moves[] = {0,-1,0,1};//possible moves (0,-1)down,(0.1)up,(1,0)right,(-1,0)left
+
+    //possible moves (0,-1)down,(0و 1)up,(1,0)right,(-1,0)left
+    private int moves[] = {0,-1,0,1};
 
     static class cell {
         int x, y;
@@ -19,9 +21,11 @@ public class part2 extends AbstractPart{
         N = s.nextInt();
         maze = new int[N][N];
         System.out.println("please enter values for maze:");
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                maze[i][j] = s.nextInt(); }
+                maze[i][j] = s.nextInt();
+            }
+        }
         boolean f = solve( );
         System.out.println("Solution:");
         if (f == false)
@@ -32,15 +36,15 @@ public class part2 extends AbstractPart{
     }
 
     /*
-    1-we use bfs to solve the maze we visit the cells in all 4 directions
-    2-visited cells are marked with -1*(i+1) to trace the route while printing
-    3-go to the isSafe fn to check if they are available
-    4-we then enqueue them , and repeat
-    5-at the start of every loop check if we reached the end of the maze
+     * 1-we use bfs to solve the maze we visit the cells in all 4 directions
+     * 2-visited cells are marked with -1*(i+1) to trace the route while printing
+     * 3-go to the isSafe fn to check if they are available
+     * 4-we then enqueue them , and repeat
+     * 5-at the start of every loop check if we reached the end of the maze
      */
     private boolean solve() {
         if (!isSafe( N - 1, N - 1) || !isSafe( 0, 0))
-            return false; //if end or start is blocked then no solution
+            return false; // if end or start is blocked then no solution
 
         Queue<cell> queue = new LinkedList<>();
         queue.add(new cell(0, 0));
@@ -54,6 +58,7 @@ public class part2 extends AbstractPart{
 
                 if (isSafe(mx,my) ) {
                     maze[my][mx]=-1*(i+1);
+
                     //leave trail to trace and print the steps later and mark visited
                     // if we move down we put value -1 , left put -2 ,up put -3 ,right put -4
                     queue.add(new cell(mx, my));

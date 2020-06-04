@@ -42,15 +42,21 @@ public class part3 extends AbstractPart{
         }
 
         int src , dest ,time,cost,total;
-        for (int i = 0; i < numRoutes; i++){
-            src=s.nextInt();
-            dest=s.nextInt();
-            time=s.nextInt();
-            cost=s.nextInt();
+        for (int i = 0; i < numRoutes; i++) {
+            try {
+                src = s.nextInt();
+                dest = s.nextInt();
+                time = s.nextInt();
+                cost = s.nextInt();
 
-            //get total cost by adding the hour cost (with the 1 hour stay included)
-            total=M*(1+time)+cost;
-            graph.get(src).add(new Route(dest,total,time));
+                //get total cost by adding the hour cost (with the 1 hour stay included)
+                total = M * (1 + time) + cost;
+                graph.get(src).add(new Route(dest, total, time));
+
+            } catch (IndexOutOfBoundsException ex) {
+                --i;
+                System.out.println("No such location!, nothing was added, please enter values again.");
+            }
         }
         System.out.println("please enter source city:");
         int start=s.nextInt();

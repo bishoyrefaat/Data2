@@ -75,10 +75,10 @@ public class part2 extends AbstractPart{
     private void printPathRec(int x , int y) {
         if(x==0&&y==0) {
             System.out.print("(" + x + "," + y + ")");
-        return ;}
+            return ;}
         int i = -1*(maze[y][x]+1);
-            printPathRec(x-moves[i],y-moves[3-i]);
-            System.out.print(",(" + x + "," + y + ")");
+        printPathRec(x-moves[i],y-moves[3-i]);
+        System.out.print(",(" + x + "," + y + ")");
     }
 
 

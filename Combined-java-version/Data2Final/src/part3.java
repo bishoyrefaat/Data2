@@ -4,7 +4,7 @@ import java.util.*;
 public class part3 extends AbstractPart{
 
     static class Route {
-         int point, weight,time ;
+        int point, weight,time ;
         public Route(int point, int weight,int time) {
             this.point = point;
             this.weight = weight;
@@ -28,21 +28,21 @@ public class part3 extends AbstractPart{
         M = s.nextInt();
 
         // number of cities, number of routes
-        int numberOfCities,numberOfRoutes;
+        int numCities,numRoutes;
         System.out.println("please enter number of cities: ");
-        numberOfCities=s.nextInt();
+        numCities=s.nextInt();
 
         System.out.println("please enter number of routes: ");
-        numberOfRoutes=s.nextInt();
+        numRoutes=s.nextInt();
 
         System.out.println("please enter source , destination time and cost for each route: ");
-        graph=new ArrayList<ArrayList<Route>> (numberOfRoutes+1);
-        for (int i = 0; i < numberOfCities+1; i++) {
-            graph.add(new ArrayList<Route>(numberOfCities+1));
+        graph=new ArrayList<ArrayList<Route>> (numRoutes+1);
+        for (int i = 0; i < numCities+1; i++) {
+            graph.add(new ArrayList<Route>(numCities+1));
         }
 
         int src , dest ,time,cost,total;
-        for (int i = 0; i < numberOfRoutes; i++){
+        for (int i = 0; i < numRoutes; i++){
             src=s.nextInt();
             dest=s.nextInt();
             time=s.nextInt();
@@ -57,34 +57,32 @@ public class part3 extends AbstractPart{
         System.out.println("please enter destination city:");
         int end=s.nextInt();
 
-        dijkstra(start,end,numberOfCities,numberOfRoutes);
+        dijkstra(start,end,numCities,numRoutes);
 
     }
 
-    private void dijkstra(int start,int end,int numberOfCities,int numberOfRoutes) {
+    private void dijkstra(int start,int end,int numCities,int numRoutes) {
         //array to contain the least cost for each point relative to the start
-        int d[] = new int[numberOfCities+1];
+        int d[] = new int[numCities+1];
 
         //array to record the time for the shortest path for each point relative to the start
-        int t[]= new int[numberOfCities+1];
+        int t[]= new int[numCities+1];
 
-        int shortest[]= new int[numberOfCities+1];
-
-        /*
-         * this will contain the previous point for each shortest path.
-         * for example in the case provided with the assignment  d[4]=3 , and d[3]=1
+        int shortest[]= new int[numCities+1];
+        /* this will contain the previous point for each shortest path.
+         * for example in the case provided with the assignment  shortest[4]=3 , and shortest[3]=1
          * this is used to trace the path taken
          */
 
         //initial values for all points
-        for (int i = 0; i < numberOfCities+1; i++) {
+        for (int i = 0; i < numCities+1; i++) {
             d[i] = -1;
         }
 
         //start is intialized with 0 distance and time
         d[start]=0;
 
-        PriorityQueue<Route> q = new PriorityQueue<Route>(numberOfRoutes+1,new RouteComparator());
+        PriorityQueue<Route> q = new PriorityQueue<Route>(numRoutes+1,new RouteComparator());
         q.add(new Route(start,0,0));
         while(!q.isEmpty()&&end!=start){
             int cur=q.poll().point;

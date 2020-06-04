@@ -68,11 +68,11 @@ public class part1 extends AbstractPart{
             while(iter.hasNext()) {
                 int nxt=(int)iter.next();
                 if(!vis[nxt]){
-                level[curLevel].add(nxt);
-                vis[nxt]=true;
-                if(curLevel-1>=0)
-                    q1.add(new pair(nxt,curLevel-1));
-            }
+                    level[curLevel].add(nxt);
+                    vis[nxt]=true;
+                    if(curLevel-1>=0)
+                        q1.add(new pair(nxt,curLevel-1));
+                }
             }
         }
     }

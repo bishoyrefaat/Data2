@@ -23,7 +23,13 @@ public class part2 extends AbstractPart{
         System.out.println("please enter values for maze:");
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                maze[i][j] = s.nextInt();
+                int in=s.nextInt();
+                if(in==0||in==1) maze[i][j] = in;
+                else{
+                    --j;
+                    System.out.println("Only input of 1 or 0 is allowed, please enter again");
+                }
+
             }
         }
         boolean f = solve( );

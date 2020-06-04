@@ -55,7 +55,7 @@ public class part3 extends AbstractPart{
 
             } catch (IndexOutOfBoundsException ex) {
                 --i;
-                System.out.println("No such location!, nothing was added, please enter values again.");
+                System.out.println("No such location!, please enter this route again.");
             }
         }
         System.out.println("please enter source city:");

@@ -29,17 +29,17 @@ public class part1 extends AbstractPart{
         System.out.println("please enter edges in the form (u  v):");
         for(int i =0;i<e;i++)
         {
-           try{
-               u=s.nextInt();
-               v=s.nextInt();
+            try{
+                u=s.nextInt();
+                v=s.nextInt();
 
-               //undirected graph so we add both ways
-               list[v].add(u);
-               list[u].add(v);
-           } catch (ArrayIndexOutOfBoundsException ex) {
+                //undirected graph so we add both ways
+                list[v].add(u);
+                list[u].add(v);
+            } catch (ArrayIndexOutOfBoundsException ex) {
                 --i;
-               System.out.println("no such vertex/vertices, please enter again");
-           }
+                System.out.println("no such vertex/vertices, please enter again");
+            }
 
         }
         System.out.println("please enter starting vertex:");
